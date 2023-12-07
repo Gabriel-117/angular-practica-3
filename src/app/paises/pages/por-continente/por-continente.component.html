@@ -1,0 +1,18 @@
+
+<h3>Por Continente</h3>
+<hr>
+<div class="text-center">
+    <button *ngFor="let continente of botonesContinente; let i = index"
+        class="btn btn-outline-primary"
+        [ngClass]="{ 'active' : continenteSeleccionado == continenteValues[i] }"
+        (click)="changeContinenteSeleccionado(i)"
+    >
+        {{continente}}
+    </button>
+</div>
+<div class="row">
+    <paises-pais-card *ngFor="let pais of paises" 
+        class="col-12 col-md-4"
+        [country]="pais"
+    />
+</div>

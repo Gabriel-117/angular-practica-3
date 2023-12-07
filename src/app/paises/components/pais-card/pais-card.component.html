@@ -1,0 +1,19 @@
+<div *ngIf="country; else NoCountry">
+    <div class="card border-primary">
+        <div 
+        class="card-footer d-flex justify-content-center align-items-center">
+            <a class="btn btn-primary"
+            routerLink="/paises/ver-pais/{{country.cca3}}">
+                👓Ver más
+            </a>
+        </div>
+    </div>
+</div>
+
+<ng-template #NoCountry>
+    <div class="bg-danger">
+        <h4 class="text-center text-white">
+            No Se Recibió Un Pais
+        </h4>
+    </div>
+</ng-template>

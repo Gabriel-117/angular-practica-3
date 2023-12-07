@@ -1,0 +1,42 @@
+<div class="card border-primary mt-2" *ngIf="tarea; else noTarea">
+    <!-- {{tarea | json}} -->
+    <div class="card-header text-center text-white" 
+    [ngClass]="
+    {
+        'bg-primary': tarea.status == tareaStatus.pendiente,
+        'bg-success': tarea.status == tareaStatus.completado,
+        'bg-danger':  tarea.status == tareaStatus.retrasado
+    }
+    ">
+        <h2>{{tarea.titulo}}</h2>
+    </div>
+    <div class="card-body">
+        {{tarea.descripcion}}
+    </div>
+    <div class="card-footer">
+        <div class="text-center"
+        [ngClass]="
+        {
+            'text-primary': tarea.status == tareaStatus.pendiente,
+            'text-success': tarea.status == tareaStatus.completado,
+            'text-danger':  tarea.status == tareaStatus.retrasado
+        }
+        ">
+            &squarf;{{tarea.status}}
+        </div>
+        <div class="text-center" *ngIf="index>=0 && tarea.status != tareaStatus.completado">
+            <button 
+            *ngIf="tarea.status != tareaStatus.retrasado"
+            (click)="changeStatus(tareaStatus.retrasado)"
+            class="btn btn-small btn-outline-danger m-1">😢</button>
+
+            <button 
+            (click)="changeStatus(tareaStatus.completado)"
+            class="btn btn-small btn-outline-success m-1">😎</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #noTarea>
+    <h3 class="bg-warning w-100 text-center py-3">No hay tarea para mostrar</h3>
+</ng-template>
